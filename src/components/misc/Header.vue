@@ -1,8 +1,8 @@
 <template>
     <ul class="nav nav-tabs">
-        <li role="presentation"><router-link to="/">Locations</router-link></li>
-        <li role="presentation"><router-link to="/seats">Seats</router-link></li>
-        <li role="presentation"><router-link to="/order">Order details</router-link></li>
-        <li role="presentation"><router-link to="/ticket">Ticket</router-link></li>
+        <router-link to="/" tag="li" active-class="active" exact><a>Locations</a></router-link>
+        <router-link to="/seats" tag="li" active-class="active"><a>Seats</a></router-link>
+        <router-link to="/order" tag="li" active-class="active"><a>Order details</a></router-link>
+        <router-link to="/ticket" tag="li" active-class="active"><a>Ticket</a></router-link>
     </ul>
 </template>

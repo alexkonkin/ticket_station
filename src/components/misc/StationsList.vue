@@ -1,10 +1,6 @@
 <template>
-    <div class="page-header text-center">
-        <div class="page-header text-center">
-            <h3>Please introduce yourself and select a bus station and a destination point of your journey</h3>
-        </div>
-        <app-stations-list></app-stations-list>
-        <!--div class="panel panel-info">
+    <div>
+         <!--div class="panel panel-info">
             <div class="panel-heading">
                 <h3 class="panel-title">Bus stations:</h3>
             </div>
@@ -22,16 +18,27 @@
                 </ul>
             </div>
         </div-->
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">Bus stations:</h3>
+            </div>
+            <div class="panel-body">
+                <ul class="list-group listScrollBar">
+                    <li class="list-group-item" v-for="item in items">{{ item.text }}</li>
+                </ul>
+            </div>
+        </div>
+
     </div>
 </template>
 
 <script>
-    import StationsList from './misc/StationsList.vue';
-
     export default {
-        components: {
-            appStationsList: StationsList
+        data: function(){
+            return {
+                items: [ { text:"station 1"}, { text:"station 2"}, { text:"station 3"}]
+            }
+
         }
     }
-
 </script>
