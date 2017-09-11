@@ -4,33 +4,18 @@
             <h3>Please introduce yourself and select a bus station and a destination point of your journey</h3>
         </div>
         <app-stations-list></app-stations-list>
-        <!--div class="panel panel-info">
-            <div class="panel-heading">
-                <h3 class="panel-title">Bus stations:</h3>
-            </div>
-            <div class="panel-body">
-                <ul class="list-group listScrollBar">
-                    <li class="list-group-item active">Bus station 1</li>
-                    <li class="list-group-item">Bus station 2</li>
-                    <li class="list-group-item">Bus station 3</li>
-                    <li class="list-group-item">Bus station 4</li>
-                    <li class="list-group-item">Bus station 5</li>
-                    <li class="list-group-item">Bus station 6</li>
-                    <li class="list-group-item">Bus station 7</li>
-                    <li class="list-group-item">Bus station 8</li>
-                    <li class="list-group-item">Bus station 9</li>
-                </ul>
-            </div>
-        </div-->
+        <app-personal-information></app-personal-information>
     </div>
 </template>
 
 <script>
     import StationsList from './misc/StationsList.vue';
+    import PersonalInformation from './misc/PersonalInformation.vue';
 
     export default {
         components: {
-            appStationsList: StationsList
+            appStationsList: StationsList,
+            appPersonalInformation: PersonalInformation
         }
     }
 

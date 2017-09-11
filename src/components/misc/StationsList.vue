@@ -6,7 +6,7 @@
             </div>
             <div class="panel-body">
                 <ul class="list-group listScrollBar">
-                    <li class="list-group-item" v-for="station in stations" v-if="station.type == 's'">{{ station.name }}</li>
+                    <li class="list-group-item" v-for="station in stations" v-if="station.type == 's'" :class="{ active : (station.name == sourceStation) }"  @click="selectStation(station)">{{ station.name }}</li>
                 </ul>
             </div>
         </div>
@@ -17,15 +17,15 @@
             </div>
             <div class="panel-body">
                 <ul class="list-group listScrollBar">
-                    <li class="list-group-item" v-for="station in stations" v-if="station.type == 'd'">{{ station.name }}</li>
+                    <li class="list-group-item" v-for="station in stations" v-if="station.type == 'd'" :class="{ active : (station.name == destinationStation) }"  @click="selectStation(station)">{{ station.name }}</li>
                 </ul>
             </div>
         </div>
 
         <button
                 class="btn btn-success"
-                @click="fetchStationsList"
-         >Fetch Stations</button>
+                @click="test"
+        >only test</button>
 
     </div>
 </template>
@@ -34,8 +34,10 @@
     export default {
         data: function(){
             return {
-                items: [ { text:"station 1"}, { text:"station 2"}, { text:"station 3"}],
-                stations: []
+                stations: [],
+                sourceStation: null,
+                sourceStationSelected: false,
+                destinationStation: null
             };
         },
         created(){
@@ -52,6 +54,9 @@
                     this.stations = resultArray;
         });
         },
+        updated(){
+            console.log("updated " + this.sourceStation);
+        },
         methods: {
             fetchStationsList(){
                 this.$http.get('https://tickets-17237.firebaseio.com/stations.json')
@@ -66,6 +71,26 @@
                             console.log(resultArray);
                             return resultArray;
                         });
+            },
+            selectStation: function (st) {
+                if(st.type == 's') {
+                    if (this.sourceStation == null) {
+                        this.sourceStation = st.name;
+                    } else {
+                        this.sourceStation = null;
+                    }
+                }else{
+                    if (this.destinationStation == null) {
+                        this.destinationStation = st.name;
+                    } else {
+                        this.destinationStation = null;
+                    }
+                }
+
+            },
+            test: function(){
+                console.log("sourceStation "+ this.sourceStation);
+                console.log("destinationStation "+ this.destinationStation);
             }
         }
     }
