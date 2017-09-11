@@ -1,0 +1,63 @@
+.listScrollBar {
+    max-height: 200px;
+    overflow-y: scroll;  
+}
+
+.center-block {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+ }
+ 
+.btn-xlarge {
+    padding: 40px 30px;
+    font-size: 22px; //change this to your desired size
+    line-height: normal;
+    -webkit-border-radius: 8px;
+       -moz-border-radius: 8px;
+            border-radius: 8px;
+}
+
+.btn-sq-lg {
+  width: 120px !important;
+  height: 120px !important;
+}
+
+.btn-space {
+    margin-right: 5px;
+    
+}
+
+.top-buffer { 
+	margin-top:10px; 
+}
+
+.bottom-buffer { 
+	margin-bottom:10px; 
+}
+
+.visible-border {
+	margin-left: 300px;
+	border: solid;
+	padding: 15px;
+}
+
+.invisible-border {
+	margin-left: 300px;
+	border: none;
+	padding: 15px;
+}
+
+.pager>li>a,
+.pager>li>a:visited
+{
+    background-color: lightblue;
+}
+
+.pager>li>a:hover {
+  background-color: lightsteelblue;
+}
+
+.v-border {
+	border: solid;
+}

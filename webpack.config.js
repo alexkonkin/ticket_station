@@ -28,6 +28,12 @@ module.exports = {
         options: {
           name: '[name].[ext]?[hash]'
         }
+      },
+      {
+        // Uses regex to test for a file type - in this case, ends with `.css`
+        test: /\.css$/,
+        // Apply these loaders if test returns true
+        use: ['style-loader', 'css-loader']
       }
     ]
   },
