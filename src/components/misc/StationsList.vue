@@ -26,7 +26,9 @@
                 class="btn btn-success"
                 @click="test"
         >only test</button>
-
+        <p>{{ notes }}</p>
+        <p> sourceStationName [ {{ getSourceStation }} ]</p>
+        <p> destinationStationName [ {{ getDestinationStation }} ]</p>
     </div>
 </template>
 
@@ -55,7 +57,8 @@
         });
         },
         updated(){
-            console.log("updated " + this.sourceStation);
+            console.log("updated source " + this.sourceStation);
+            console.log("updated destination " + this.destinationStation);
         },
         methods: {
             fetchStationsList(){
@@ -76,12 +79,14 @@
                 if(st.type == 's') {
                     if (this.sourceStation == null) {
                         this.sourceStation = st.name;
+                        this.$store.dispatch('addSrcStation', st);
                     } else {
                         this.sourceStation = null;
                     }
                 }else{
                     if (this.destinationStation == null) {
                         this.destinationStation = st.name;
+                        this.$store.dispatch('addDstStation', st);
                     } else {
                         this.destinationStation = null;
                     }
@@ -91,7 +96,15 @@
             test: function(){
                 console.log("sourceStation "+ this.sourceStation);
                 console.log("destinationStation "+ this.destinationStation);
-            }
+             }
+        },
+        computed: {
+            getSourceStation() {
+                return this.$store.getters.sourceStation;
+            },
+            getDestinationStation() {
+                return this.$store.getters.destinationStation;
+            },
         }
     }
 </script>
