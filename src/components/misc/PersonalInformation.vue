@@ -7,13 +7,37 @@
             <div class="form">
                 <div class="form-group   col-lg-6">
                     <label for="userName">Name</label>
-                    <input type="text" class="form-control" id="userName" placeholder="Jon Doe">
+                    <input type="text" class="form-control" id="userName" :value="name" @change="setUN">
                 </div>
                 <div class="form-group col-lg-6">
                     <label for="userEmail">Email address</label>
-                    <input type="email" class="form-control" id="userEmail" placeholder="email@example.com">
+                    <input type="email" class="form-control" id="userEmail" placeholder="email@example.com" :value="email" @change="setUE">
                 </div>
             </div>
         </div>
     </div>
 </template>
+
+<script>
+    import { mapState } from 'vuex';
+
+    export default {
+        methods: {
+        setUN: function(e){
+            this.$store.dispatch('addUserName', e.target.value);
+        },
+        setUE: function(e){
+            this.$store.dispatch('addUserEmail', e.target.value);
+        }
+    },
+    computed: {
+            ...mapState({
+                email: state => state.user.email,
+                name: state => state.user.name
+            }),
+            getUser() {
+                return this.$store.getters.user;
+            }
+        }
+    }
+</script>

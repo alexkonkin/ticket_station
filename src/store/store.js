@@ -14,7 +14,7 @@ export const store = new Vuex.Store({
         destinationStation: null,
         sourceStationSelected: false,
         destinationStationSelected: false,
-        notes: []
+        user: { name: null, email: null}
     },
     actions: {
         addSrcStation({commit},st){
@@ -22,6 +22,12 @@ export const store = new Vuex.Store({
         },
         addDstStation({commit},st){
             commit('ADD_DST_STATION', st)
+        },
+        addUserName({commit},usr){
+            commit('ADD_USER_NAME', usr)
+        },
+        addUserEmail({commit},usr){
+            commit('ADD_USER_EMAIL', usr)
         }
     },
     mutations: {
@@ -30,6 +36,12 @@ export const store = new Vuex.Store({
         },
         ADD_DST_STATION(state, st) {
             state.destinationStation = st.name;
+        },
+        ADD_USER_NAME(state, name) {
+            state.user.name = name;
+        },
+        ADD_USER_EMAIL(state, email) {
+            state.user.email = email;
         }
     },
     getters: {
@@ -38,6 +50,9 @@ export const store = new Vuex.Store({
         },
         destinationStation(state){
             return state.destinationStation;
+        },
+        user(state){
+            return state.user;
         }
     }
 });
