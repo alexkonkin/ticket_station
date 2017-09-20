@@ -22,24 +22,20 @@
             </div>
         </div>
 
-        <button
+        <!--button
                 class="btn btn-success"
                 @click="test"
-        >only test</button>
-        <p>{{ notes }}</p>
-        <p> sourceStationName [ {{ getSourceStation }} ]</p>
-        <p> destinationStationName [ {{ getDestinationStation }} ]</p>
+        >only test</button-->
     </div>
 </template>
 
 <script>
+    import { mapState } from 'vuex';
+
     export default {
         data: function(){
             return {
-                stations: [],
-                sourceStation: null,
-                sourceStationSelected: false,
-                destinationStation: null
+                stations: []
             };
         },
         created(){
@@ -77,18 +73,17 @@
             },
             selectStation: function (st) {
                 if(st.type == 's') {
-                    if (this.sourceStation == null) {
-                        this.sourceStation = st.name;
+                     if (this.getSourceStation == null) {
                         this.$store.dispatch('addSrcStation', st);
                     } else {
-                        this.sourceStation = null;
+                        this.$store.dispatch('addSrcStation', { name: null});
                     }
+
                 }else{
-                    if (this.destinationStation == null) {
-                        this.destinationStation = st.name;
+                    if (this.getDestinationStation == null) {
                         this.$store.dispatch('addDstStation', st);
                     } else {
-                        this.destinationStation = null;
+                        this.$store.dispatch('addDstStation', { name: null});
                     }
                 }
 
@@ -105,6 +100,10 @@
             getDestinationStation() {
                 return this.$store.getters.destinationStation;
             },
+            ...mapState({
+                    sourceStation: state => state.sourceStation,
+                    destinationStation: state => state.destinationStation
+            })
         }
     }
 </script>
