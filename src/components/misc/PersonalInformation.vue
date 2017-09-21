@@ -23,21 +23,18 @@
 
     export default {
         methods: {
-        setUN: function(e){
-            this.$store.dispatch('addUserName', e.target.value);
+            setUN: function(e){
+                this.$store.dispatch('addUserName', e.target.value);
+            },
+            setUE: function(e){
+                this.$store.dispatch('addUserEmail', e.target.value);
+            }
         },
-        setUE: function(e){
-            this.$store.dispatch('addUserEmail', e.target.value);
-        }
-    },
-    computed: {
+        computed: {
             ...mapState({
                 email: state => state.user.email,
                 name: state => state.user.name
-            }),
-            getUser() {
-                return this.$store.getters.user;
-            }
+            })
         }
     }
 </script>

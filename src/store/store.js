@@ -14,7 +14,30 @@ export const store = new Vuex.Store({
         destinationStation: null,
         sourceStationSelected: false,
         destinationStationSelected: false,
-        user: { name: null, email: null}
+        user: { name: null, email: null},
+        seatId: null,
+        bus: {
+            seatsFirstRow: [
+                {id: 1, isFree: true, isDriversSeat: false},
+                {id: 2, isFree: true, isDriversSeat: false},
+                {id: 3, isFree: true, isDriversSeat: false},
+                {id: 4, isFree: true, isDriversSeat: false},
+                {id: 5, isFree: true, isDriversSeat: false},
+                {id: 6, isFree: true, isDriversSeat: false},
+                {id: 7, isFree: true, isDriversSeat: false},
+                {id: 8, isFree: true, isDriversSeat: true}
+            ],
+            seatsSecondRow: [
+                {id: 9, isFree: true, isDriversSeat: false},
+                {id: 10, isFree: true, isDriversSeat: false},
+                {id: 11, isFree: true, isDriversSeat: false},
+                {id: 12, isFree: true, isDriversSeat: false},
+                {id: 13, isFree: true, isDriversSeat: false},
+                {id: 14, isFree: true, isDriversSeat: false},
+                {id: 15, isFree: true, isDriversSeat: false},
+                {id: 16, isFree: true, isDriversSeat: false}
+            ]
+        }
     },
     actions: {
         addSrcStation({commit},st){
