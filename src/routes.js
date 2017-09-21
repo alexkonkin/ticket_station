@@ -1,7 +1,6 @@
 /**
  * Created by oleksiy.konkin on 9/8/2017.
  */
-import Home from './components/Home.vue';
 import Locations from './components/Locations.vue';
 import Seats from './components/Seats.vue';
 import Order from './components/Order.vue';
