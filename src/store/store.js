@@ -15,27 +15,27 @@ export const store = new Vuex.Store({
         sourceStationSelected: false,
         destinationStationSelected: false,
         user: { name: null, email: null},
-        seatId: null,
+        seatId: [],
         bus: {
             seatsFirstRow: [
-                {id: 1, isFree: true, isDriversSeat: false},
-                {id: 2, isFree: true, isDriversSeat: false},
-                {id: 3, isFree: true, isDriversSeat: false},
-                {id: 4, isFree: true, isDriversSeat: false},
-                {id: 5, isFree: true, isDriversSeat: false},
-                {id: 6, isFree: true, isDriversSeat: false},
-                {id: 7, isFree: true, isDriversSeat: false},
-                {id: 8, isFree: true, isDriversSeat: true}
+                {id: 1, isFree: true, isDriversSeat: false, userName: null},
+                {id: 2, isFree: true, isDriversSeat: false, userName: null},
+                {id: 3, isFree: true, isDriversSeat: false, userName: null},
+                {id: 4, isFree: true, isDriversSeat: false, userName: null},
+                {id: 5, isFree: true, isDriversSeat: false, userName: null},
+                {id: 6, isFree: true, isDriversSeat: false, userName: null},
+                {id: 7, isFree: true, isDriversSeat: false, userName: null},
+                {id: 8, isFree: true, isDriversSeat: true, userName: null}
             ],
             seatsSecondRow: [
-                {id: 9, isFree: true, isDriversSeat: false},
-                {id: 10, isFree: true, isDriversSeat: false},
-                {id: 11, isFree: true, isDriversSeat: false},
-                {id: 12, isFree: true, isDriversSeat: false},
-                {id: 13, isFree: true, isDriversSeat: false},
-                {id: 14, isFree: true, isDriversSeat: false},
-                {id: 15, isFree: true, isDriversSeat: false},
-                {id: 16, isFree: true, isDriversSeat: false}
+                {id: 9, isFree: true, isDriversSeat: false, userName: null},
+                {id: 10, isFree: true, isDriversSeat: false, userName: null},
+                {id: 11, isFree: true, isDriversSeat: false, userName: null},
+                {id: 12, isFree: true, isDriversSeat: false, userName: null},
+                {id: 13, isFree: true, isDriversSeat: false, userName: null},
+                {id: 14, isFree: true, isDriversSeat: false, userName: null},
+                {id: 15, isFree: true, isDriversSeat: false, userName: null},
+                {id: 16, isFree: true, isDriversSeat: false, userName: null}
             ]
         }
     },
@@ -51,6 +51,9 @@ export const store = new Vuex.Store({
         },
         addUserEmail({commit},usr){
             commit('ADD_USER_EMAIL', usr)
+        },
+        bookOrReleaseSeat({commit},seatInfo){
+            commit('BOOK_OR_RELEASE_SEAT', seatInfo)
         }
     },
     mutations: {
@@ -65,6 +68,49 @@ export const store = new Vuex.Store({
         },
         ADD_USER_EMAIL(state, email) {
             state.user.email = email;
+        },
+        BOOK_OR_RELEASE_SEAT(state, seatInfo) {
+            switch(seatInfo.row) {
+                case 1:
+                    state.bus.seatsFirstRow.forEach((item, i) => {
+                        if (item.id == seatInfo.seat.id){
+                            if (item.isFree == true) {
+                                item.isFree = false;
+                                item.userName = seatInfo.name;
+                            } else {
+                                item.isFree = true;
+                                item.userName = null;
+                            }
+                        }
+                    });
+                    break;
+                case 2:
+                    state.bus.seatsSecondRow.forEach((item, i) => {
+                        if (item.id == seatInfo.seat.id){
+                            if (item.isFree == true) {
+                                item.isFree = false;
+                                item.userName = seatInfo.name;
+                            } else {
+                                item.isFree = true;
+                                item.userName = null;
+                            }
+                        }
+                    });
+                    break;
+            }
+            state.seatId = [];
+            state.bus.seatsFirstRow.forEach((item) => {
+                if (!item.isFree && !item.isDriversSeat) {
+                    state.seatId.push(item.id);
+
+                }
+            });
+            state.bus.seatsSecondRow.forEach((item) => {
+                if (!item.isFree && !item.isDriversSeat) {
+                    state.seatId.push(item.id);
+
+                }
+            });
         }
     },
     getters: {
@@ -76,6 +122,9 @@ export const store = new Vuex.Store({
         },
         user(state){
             return state.user;
+        },
+        seatIds(state){
+            return state.seatId;
         }
     }
 });
