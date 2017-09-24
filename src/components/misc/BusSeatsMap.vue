@@ -10,7 +10,7 @@
                     <i class="fa fa-user fa-4x"></i><br>{{ seat.id }}<br/>
                     <p v-if="seat.isDriversSeat">Drivers<br>seat</p>
                     <p v-if="seat.isFree && !seat.isDriversSeat">free<br>seat</p>
-                    <p v-if="!seat.isFree && !seat.isDriversSeat">{{ name }}</p>
+                    <p v-if="!seat.isFree && !seat.isDriversSeat" v-html="addHtmlBreak(name)"></p>
                 </a>
             </div>
             <div class="row top-buffer bottom-buffer">
@@ -22,7 +22,7 @@
                     <i class="fa fa-user fa-4x"></i><br>{{ seat.id }}<br/>
                     <p v-if="seat.isDriversSeat">Drivers<br>seat</p>
                     <p v-if="seat.isFree && !seat.isDriversSeat">free<br>seat</p>
-                    <p v-if="!seat.isFree && !seat.isDriversSeat">{{ name }}</p>
+                    <p v-if="!seat.isFree && !seat.isDriversSeat" v-html="addHtmlBreak(name)"></p>
                 </a>
             </div>
         </div>
@@ -39,6 +39,12 @@
             },
             bookOrReleaseSeat: function(row, seat) {
                 this.$store.dispatch('bookOrReleaseSeat', {row: row, seat: seat, name: name});
+            },
+            addHtmlBreak: function (value) {
+                if (!value) {
+                    return '';
+                }
+                return value.split(" ").join("<br>");
             }
         },
         computed: {
