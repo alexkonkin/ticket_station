@@ -7,11 +7,11 @@
             <div class="form">
                 <div class="form-group   col-lg-6">
                     <label for="userName">Price per seat:</label>
-                    <input type="text" class="form-control text-center" id="userName" :value="pricePerSeat" readonly>
+                    <input type="text" class="form-control text-center" id="userName" :value="pricePerSeat | currency" readonly>
                 </div>
                 <div class="form-group col-lg-6">
                     <label for="userEmail">Total:</label>
-                    <input type="text" class="form-control text-center" id="userEmail" placeholder="email@example.com" :value="total" readonly>
+                    <input type="text" class="form-control text-center" id="userEmail" placeholder="email@example.com" :value="total | currency" readonly>
                 </div>
             </div>
         </div>
@@ -37,6 +37,11 @@
             }),
             total: function(){
                 return this.pricePerSeat * this.seatId.length;
+            }
+        },
+        filters: {
+            currency: function(value) {
+                return '$ ' + parseFloat(value).toFixed(2);
             }
         }
     }
