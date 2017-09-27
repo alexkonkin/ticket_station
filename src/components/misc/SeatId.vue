@@ -6,7 +6,7 @@
             <div class="form-group">
                 <label for="inputType" class="col-md-3 control-label">You've selected a seat/seats:</label>
                 <div class="col-lg-3">
-                    <input type="text" class="form-control" id="inputType" placeholder="Seat #" :value="seatId" readonly>
+                    <input type="text" class="form-control text-center" id="inputType" placeholder="Seat #" :value="seatId" readonly>
                 </div>
             </div>
         </form>

@@ -16,6 +16,8 @@ export const store = new Vuex.Store({
         destinationStationSelected: false,
         user: { name: null, email: null},
         seatId: [],
+        pricePerSeat: 20.00,
+        busId: (Math.floor(Math.random() * (100 - 1 + 1)) + 1) +"-"+ String("ABCDEFGHIJKLMNOPQURSTUVWXYZ").substr( Math.floor(Math.random() * 27), 1),
         bus: {
             seatsFirstRow: [
                 {id: 1, isFree: true, isDriversSeat: false, userName: null},
