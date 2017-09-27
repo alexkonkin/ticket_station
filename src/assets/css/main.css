@@ -3,6 +3,11 @@
     overflow-y: scroll;  
 }
 
+.ticketScrollBar {
+    max-height: 550px;
+    overflow-y: scroll;
+}
+
 .center-block {
     display: block;
     margin-left: auto;
