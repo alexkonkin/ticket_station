@@ -6,7 +6,7 @@
             </div>
 
             <app-ticket></app-ticket>
-
+            <app-send-email-to-customer></app-send-email-to-customer>
         </div>
 
     </div>
@@ -15,10 +15,12 @@
 <script>
     import { mapState } from 'vuex';
     import Ticket from './misc/Ticket.vue';
+    import SendEmailToCustomer from './misc/SendEmailToCustomer.vue';
 
     export default {
         components: {
-            appTicket: Ticket
+            appTicket: Ticket,
+            appSendEmailToCustomer: SendEmailToCustomer
         }
     }
 
