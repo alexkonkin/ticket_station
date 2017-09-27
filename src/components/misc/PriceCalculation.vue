@@ -36,7 +36,6 @@
                 seatId: state => state.seatId
             }),
             total: function(){
-                console.log(this.pricePerSeat * this.seatId);
                 return this.pricePerSeat * this.seatId.length;
             }
         }
